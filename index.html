@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="theme-color" content="#170b1e" />
+<title>For My Favorite Person ❤️</title>
+
+<!-- ============================================================
+     FONTS — a hand-lettered script for the signature line,
+     an elegant serif for emotional headlines, a clean sans
+     for everyday UI text.
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     APP SHELL — everything lives inside one 9:16 portrait frame.
+     Screens are stacked and toggled with the .active class from
+     script.js. Nothing here scrolls except the sections that
+     are explicitly meant to (gallery / wishes).
+============================================================ -->
+<div id="app">
+
+  <!-- floating ambience layers, always present, live behind every screen -->
+  <div class="ambience" id="ambience">
+    <div class="grain"></div>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    <div class="sparkles" id="sparkles"></div>
+  </div>
+
+  <!-- ============================================================
+       SCREEN 1 — LOADING / HERO
+  ============================================================ -->
+  <section class="screen active" id="screen-loading">
+    <div class="stars-bg"></div>
+    <div class="loading-inner">
+      <div class="heartbeat-wrap">
+        <svg class="heartbeat-heart" viewBox="0 0 100 90" aria-hidden="true">
+          <path d="M50 82 C 20 60, 2 40, 2 22 C 2 6, 16 -2, 30 4 C 40 8, 47 18, 50 26 C 53 18, 60 8, 70 4 C 84 -2, 98 6, 98 22 C 98 40, 80 60, 50 82 Z"/>
+        </svg>
+        <div class="heart-glow"></div>
+      </div>
+
+      <p class="loading-line" id="loadingLine1">Someone loves you very much&hellip;</p>
+
+      <!-- CHANGE HER NAME HERE — appears throughout the site via CONFIG.name in script.js -->
+      <h1 class="loading-title" id="loadingTitle"><span class="shimmer-text">For My Favorite Person</span> <span class="heart-emoji">❤️</span></h1>
+
+      <button class="btn btn-primary" id="btnBegin">
+        <span>Tap to Begin</span>
+      </button>
+      <p class="hint-text">turn your sound on 🎧</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 2 — THE ENVELOPE
+  ============================================================ -->
+  <section class="screen" id="screen-envelope">
+    <div class="stars-bg soft"></div>
+    <div class="envelope-stage">
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+        <div class="card-inside" id="cardInside">
+          <div class="card-face">
+            <p class="card-kicker">A little something for you</p>
+            <h2 class="card-title">Happy Birthday<br/>My Love <span class="heart-emoji">❤️</span></h2>
+            <p class="card-sub">This little website contains a few pieces of my heart.</p>
+            <button class="btn btn-outline" id="btnOpenCard">Open</button>
+          </div>
+        </div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-front"></div>
+        <div class="wax-seal" id="waxSeal"><span>❤</span></div>
+      </div>
+      <p class="tap-hint" id="envelopeHint">tap the envelope</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 3 — PHOTO SLIDESHOW ("Us")
+       Photos come from images/us/  — see CONFIG.usPhotos in script.js
+  ============================================================ -->
+  <section class="screen" id="screen-slideshow">
+    <div class="slideshow-stage" id="slideshowStage">
+      <!-- slides injected by script.js -->
+    </div>
+
+    <div class="slideshow-top">
+      <p class="eyebrow">Our Story So Far</p>
+      <h2 class="section-title">Us, in moments <span class="heart-emoji">❤️</span></h2>
+    </div>
+
+    <div class="slideshow-bottom">
+      <div class="slide-dots" id="slideDots"></div>
+      <button class="btn btn-primary btn-block" id="btnToGallery">Continue <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 4 — "My Favourite Girl" GALLERY
+       Photos come from images/her/ — see CONFIG.herPhotos in script.js
+  ============================================================ -->
+  <section class="screen" id="screen-gallery">
+    <div class="gallery-header">
+      <p class="eyebrow">Just Her</p>
+      <h2 class="section-title">My Favourite Girl <span class="heart-emoji">❤️</span></h2>
+      <p class="section-sub">every photo of you is my favorite photo</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- cards injected by script.js -->
+    </div>
+
+    <button class="btn btn-primary btn-block btn-floaty" id="btnToWishes">Something I Want To Tell You <span class="heart-emoji">❤️</span></button>
+  </section>
+
+  <!-- fullscreen lightbox for gallery -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img src="" alt="" id="lightboxImg" />
+  </div>
+
+  <!-- ============================================================
+       SCREEN 5 — BIRTHDAY WISHES (one message at a time)
+       Edit the messages inside CONFIG.wishes in script.js
+  ============================================================ -->
+  <section class="screen" id="screen-wishes">
+    <div class="wishes-bg">
+      <div class="wishes-orb orb1"></div>
+      <div class="wishes-orb orb2"></div>
+      <div class="wishes-orb orb3"></div>
+    </div>
+
+    <div class="wishes-header">
+      <p class="eyebrow">Birthday Wishes</p>
+      <h2 class="section-title">Something I Want To Tell You <span class="heart-emoji">❤️</span></h2>
+    </div>
+
+    <div class="wishes-stage">
+      <div class="wish-card" id="wishCard">
+        <div class="wish-glow"></div>
+        <p class="wish-text" id="wishText"></p>
+      </div>
+    </div>
+
+    <div class="wishes-footer">
+      <p class="wish-progress" id="wishProgress">1 / 12</p>
+      <button class="btn btn-primary btn-block" id="btnNextWish">Next <span class="heart-emoji">❤️</span></button>
+      <button class="btn btn-gold btn-block hidden" id="btnFinalSurprise">One Last Surprise <span class="heart-emoji">❤️</span></button>
+      <p class="tap-hint">swipe up or tap next</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 6 — CAKE / CELEBRATION
+  ============================================================ -->
+  <section class="screen" id="screen-cake">
+    <div class="stars-bg soft"></div>
+    <p class="eyebrow center">Make A Wish</p>
+    <h2 class="section-title center">Happy Birthday <span class="heart-emoji">❤️</span></h2>
+
+    <div class="cake-stage">
+      <svg class="cake-svg" id="cakeSvg" viewBox="0 0 260 240" aria-hidden="true">
+        <!-- plate -->
+        <ellipse cx="130" cy="222" rx="110" ry="10" fill="url(#plateGrad)"/>
+        <!-- bottom tier -->
+        <rect x="35" y="150" width="190" height="60" rx="14" fill="url(#cakeGrad1)"/>
+        <rect x="35" y="150" width="190" height="16" rx="8" fill="#ffffff33"/>
+        <!-- top tier -->
+        <rect x="70" y="100" width="120" height="55" rx="12" fill="url(#cakeGrad2)"/>
+        <rect x="70" y="100" width="120" height="14" rx="7" fill="#ffffff33"/>
+        <!-- drips -->
+        <path d="M35 150 q10 20 20 0 q10 20 20 0 q10 20 20 0 q10 20 20 0 q10 20 20 0 q10 20 20 0 q10 20 20 0 q10 20 20 0 q10 20 20 0 V150Z" fill="url(#cakeGrad1)" opacity="0.85"/>
+        <!-- candles -->
+        <g id="candles">
+          <g class="candle" data-lit="true">
+            <rect x="98" y="70" width="6" height="32" rx="3" fill="#fff3e0"/>
+            <g class="flame-wrap"><path class="flame" d="M101 70 C 96 62, 96 54, 101 48 C 106 54, 106 62, 101 70 Z" fill="url(#flameGrad)"/></g>
+          </g>
+          <g class="candle" data-lit="true">
+            <rect x="127" y="62" width="6" height="40" rx="3" fill="#fff3e0"/>
+            <g class="flame-wrap"><path class="flame" d="M130 62 C 125 54, 125 46, 130 40 C 135 46, 135 54, 130 62 Z" fill="url(#flameGrad)"/></g>
+          </g>
+          <g class="candle" data-lit="true">
+            <rect x="156" y="70" width="6" height="32" rx="3" fill="#fff3e0"/>
+            <g class="flame-wrap"><path class="flame" d="M159 70 C 154 62, 154 54, 159 48 C 164 54, 164 62, 159 70 Z" fill="url(#flameGrad)"/></g>
+          </g>
+        </g>
+        <defs>
+          <linearGradient id="cakeGrad1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f3b6c9"/><stop offset="1" stop-color="#d98aa8"/>
+          </linearGradient>
+          <linearGradient id="cakeGrad2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f7cfa1"/><stop offset="1" stop-color="#e3a86c"/>
+          </linearGradient>
+          <radialGradient id="plateGrad"><stop offset="0" stop-color="#ffffff55"/><stop offset="1" stop-color="#ffffff05"/></radialGradient>
+          <radialGradient id="flameGrad"><stop offset="0" stop-color="#fff6cc"/><stop offset="0.5" stop-color="#ffb648"/><stop offset="1" stop-color="#ff7a3c"/></radialGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <button class="btn btn-primary" id="btnBlow">Blow the Candles</button>
+    <p class="post-blow hidden" id="postBlowText">I Love You Forever <span class="heart-emoji">❤️</span></p>
+
+    <div class="balloons" id="balloons"></div>
+    <canvas id="confettiCanvas"></canvas>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 7 — FINAL SCREEN (night sky)
+  ============================================================ -->
+  <section class="screen" id="screen-finale">
+    <div class="night-sky">
+      <div class="moon"></div>
+      <div class="stars-bg dense"></div>
+      <div class="clouds">
+        <div class="cloud c1"></div>
+        <div class="cloud c2"></div>
+        <div class="cloud c3"></div>
+      </div>
+    </div>
+
+    <div class="finale-text">
+      <p class="finale-line" data-line="1">No matter where life takes us&hellip;</p>
+      <p class="finale-line" data-line="2">You'll always be my favourite person.</p>
+      <p class="finale-line finale-script" data-line="3"><span class="shimmer-text">I Love You</span> <span class="heart-emoji">❤️</span></p>
+      <p class="finale-line finale-forever" data-line="4">Forever.</p>
+    </div>
+
+    <button class="btn btn-outline replay-btn" id="btnReplay">Watch it again</button>
+  </section>
+
+  <!-- ============================================================
+       FLOATING MUSIC PLAYER
+       Change the file at music/song.mp3 and the title/artist
+       strings in CONFIG.song in script.js — nothing else to edit.
+  ============================================================ -->
+  <div class="music-player hidden" id="musicPlayer">
+    <button class="mp-toggle" id="mpToggle" aria-label="Play or pause music">
+      <svg id="mpIconPlay" viewBox="0 0 24 24" class="mp-icon"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="mpIconPause" viewBox="0 0 24 24" class="mp-icon hidden"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
+
+    <div class="mp-body">
+      <div class="mp-meta">
+        <span class="mp-title" id="mpTitle">Our Song</span>
+        <span class="mp-time"><span id="mpCurrent">0:00</span> / <span id="mpDuration">0:00</span></span>
+      </div>
+      <div class="mp-progress" id="mpProgressBar">
+        <div class="mp-progress-fill" id="mpProgressFill"></div>
+      </div>
+    </div>
+
+    <button class="mp-mini" id="mpRepeat" aria-label="Toggle repeat">
+      <svg viewBox="0 0 24 24" class="mp-icon-sm"><path d="M17 17H7v-3l-4 4 4 4v-3h12v-6h-2zM7 7h10v3l4-4-4-4v3H5v6h2z"/></svg>
+    </button>
+    <button class="mp-mini" id="mpVolBtn" aria-label="Toggle volume slider">
+      <svg viewBox="0 0 24 24" class="mp-icon-sm"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2A4.5 4.5 0 0 0 14 7.97v8.05a4.48 4.48 0 0 0 2.5-4.02z"/></svg>
+    </button>
+    <input type="range" id="mpVolume" class="mp-volume hidden" min="0" max="1" step="0.01" value="0.7" />
+  </div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <!-- CHANGE THE SONG: just replace music/song.mp3 with your file, keep the same filename -->
+    <source src="music/song.mp3" type="audio/mpeg" />
+  </audio>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
